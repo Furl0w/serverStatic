@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Draw connect</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .drawConnect{
+    padding:20px 0px 20px 0px;
+    font:bold 13px Arial;
+    background: #0f0;
+    color:#555;
+    border-radius:2px;
+    width:100px;
+    border:1px solid #ccc;
+    box-shadow:1px 1px 3px #999;
+   }
+
+ </style>
+    <script>
+        let URL_SERVER = ""
+        function printFrame() {
+            let uid = document.getElementById('email').value
+            var popup = window.open(URL_SERVER+'/popup.html?uid=' + uid, '', 'fullscreen=no')
+            setTimeout(() => {
+                console.log("sending ", uid)
+                popup.postMessage(uid, "*");
+            }, 500)
+        }
+        function receiveMessage(event) {
+            console.log(event.origin)
+            // if (event.origin !== "http://localhost:5001")
+
+            console.log("jwt: ", event.data)
+
+            return event.data
+        }
+        window.addEventListener("message", receiveMessage, false);
+
+    </script>
+</head>
+
+<body>
+
+    <form>
+        <label for="email" name="email_label">Votre e-mail:</label>
+        <input type="email" name="email" value="kgugugguuf@" id="email">
+        <br>
+        <label for="password" name="password_label">Votre password:</label>
+        <input type="password" name="password" value="password">
+        <button type="button" onclick="document.querySelector('#error').innerHTML='Wrong password';">Se connecter</button>
+    </form>
+
+    <div id="error"></div>
+
+    <div>
+        <button type="button" class="drawConnect" onclick="printFrame()">DrawConnect</button>
+    </div>
+
+</body>
+
+</html>
