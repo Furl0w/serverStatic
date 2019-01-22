@@ -1,14 +1,13 @@
 let URL_SERVER_AUTH = "localhost:3030"
 
 
-var uid = new URL(window.location.href).searchParams.get("uid");
-document.getElementById('uid').textContent = uid;
+var uid = null
 
 var socket_open = false
 var origin_event = null;
 
 function receiveMessage(event) {
-    if (event.data == uid) {
+    if (event.data == "Hello World") {
         console.log("received ", event)
         origin_event = event
     }
@@ -22,6 +21,8 @@ function sendToken(token) {
 window.addEventListener("message", receiveMessage, false);
 
 function connect() {
+
+    uid = document.getElementById('uid').textContent
 
     document.getElementById('connect').textContent = "Connecting...";
 
