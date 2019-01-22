@@ -1,4 +1,4 @@
-let URL_SERVER_AUTH = "localhost:3030"
+let URL_SERVER_AUTH = "192.168.137.136:9090"
 
 
 var uid = null
@@ -22,7 +22,7 @@ window.addEventListener("message", receiveMessage, false);
 
 function connect() {
 
-    uid = document.getElementById('uid').textContent
+    uid = document.getElementById('uid').value
 
     document.getElementById('connect').textContent = "Connecting...";
 
